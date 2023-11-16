@@ -5,28 +5,18 @@
 # - Moves publishing directory contents to GH pages.
 ##
 
-name: Publish to GH Pages
+name: Test GIT
 
 on:
   push:
     branches:
-      - gh-pages-setup-test
+      - gh-pages-setup-test-2
 
 jobs:
   publish:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - run: ls
-      - name: Build using Docker
-        run: /bin/bash ./build-docker.sh
-      - name: Move to Publish Directory
-        run: |
-          mkdir ./publish
-          mv ./build/PartiQL-Specification.html ./publish/index.html
-          mv ./build/images ./publish/
-      - name: Deploy to GH Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./publish
+      - run: ls -la
+      - run: git --version
+      - run: git log
